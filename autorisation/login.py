@@ -8,8 +8,8 @@ def login():
         is_exist = check_username(username=name)
 
         if is_exist == True:
-                print("Успешная авторизация.\n")
-                return name
+            print("Успешная авторизация.\n")
+            return name
 
         else:
             print(

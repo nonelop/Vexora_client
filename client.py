@@ -1,29 +1,27 @@
-import socket
+import socket, config
 from autorisation import login, register
 
-while True:
-    print("Добро пожаловать в Babuin!\n\n\n[1] Регистрация\n\n[2] Вход\n")
-    inp = input("Выберите действие: ")
+def connect(username):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
-    try:
-        inp = int(inp)
-    except:
-        print("Пожалуйста, введите число.")
+        sock.connect((config.SERVER_IP, config.SERVER_PORT))
 
-    if inp == 1:
-        register.register()
-    elif inp == 2:
-        name = login.login()
-        if name:
-            break
-    else:
-        print("Выберите вариант 1 либо 2")
-
-
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-    sock.connect(("192.168.2.5", 5050))
-
+        
+def autorisation():
     while True:
-        inp = input("Сообщение на сервер: ")
-        message = f"{name}: {inp}"
-        sock.send(message.encode())
+        print("""\nДобро пожаловать в Vexora\nВыберите действие по номеру ниже\n\n\n[1] - Регистрация\n\n[2] - Вход\n\n""")
+
+        inp = input("[Vexora] > ")
+
+        if inp == "1":
+            register.register()
+
+        elif inp == "2":
+            username = login.login()
+            connect(username)
+        else:
+            print("Выберите вариант 1 либо 2.")
+        
+
+autorisation()
+
