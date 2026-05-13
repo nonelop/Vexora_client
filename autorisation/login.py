@@ -1,4 +1,4 @@
-#import database
+from connection.server_requests.database import check_username
 
 
 def login():
@@ -6,9 +6,9 @@ def login():
         name = input("Введите логигн: ")
         password = input("Введите пароль: ")
 
-        is_exist = database.check_user(username=name)
+        is_exist = check_username(username=name)
 
-        if is_exist:
+        if is_exist == 1:
             is_password_correct = database.check_password(
                 username=name, password=password
             )
