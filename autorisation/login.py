@@ -1,4 +1,4 @@
-from connection.server_requests.database import check_username
+from connection.proto_requests.authorzsation import check_username
 
 
 def login():

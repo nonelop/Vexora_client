@@ -7,11 +7,10 @@ def write_new_user(data: tuple):
 
     if sock != 0:
         request = {
-            "req_type": "database",
-            "operation": "write",
-            "values": {
+            "method": "authorization",
+            "operation": "register_new_user",
+            "data": {
                 "username": data[0],
-                "password": data[1],
             },
         }
 
@@ -36,9 +35,9 @@ def check_username(username: str):
 
     if sock != 0:
         request = {
-            "req_type": "database",
-            "operation": "check_username",
-            "values": {
+            "method": "authorization",
+            "operation": "check_user_username",
+            "data": {
                 "username": username,
             },
         }
@@ -53,7 +52,7 @@ def check_username(username: str):
 
         disconnect_to_server(sock)
 
-        return operation_status_str["values"][0]
+        return operation_status_str["data"][0]
 
     else:
         return 0

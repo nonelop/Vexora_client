@@ -1,4 +1,4 @@
-from connection.server_requests.database import write_new_user, check_username
+from connection.proto_requests.authorzsation import write_new_user, check_username
 
 
 def register():
@@ -12,6 +12,6 @@ def register():
         if is_exist:
             print("Пользователь с таким именем уже сущетсвует.")
         else:
-            print(write_new_user(data=(name, 0)))
+            print(write_new_user(data=(name,)))
             print("Запись успешно созданна! войдите в нее через Вход")
             break
